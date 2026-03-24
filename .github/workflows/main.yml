@@ -1,0 +1,37 @@
+name: MLOps Pipeline CI/CD
+
+# Ce bloc dit à GitHub QUAND lancer l'automatisation
+on:
+  push:
+    branches: [ "develop", "feature/*" ]
+  pull_request:
+    branches: [ "develop" ]
+
+# Ce bloc dit à GitHub QUOI faire
+jobs:
+  test-ia:
+    runs-on: ubuntu-latest # On utilise un serveur Linux gratuit fourni par GitHub
+
+    steps:
+    # 1. On télécharge ton code et on active Git LFS pour récupérer model.pkl
+    - name: Récupération du code
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+
+    # 2. On installe Python
+    - name: Installation de Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    # 3. On installe tes librairies (scikit-learn, pytest, gradio...)
+    - name: Installation des dépendances
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 4. LE CRASH TEST : On lance Pytest !
+    - name: Validation du modèle avec Pytest
+      run: |
+        pytest -s test_model.py
