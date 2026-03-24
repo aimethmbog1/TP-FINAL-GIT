@@ -15,8 +15,23 @@ def load_data():
             "Le casque est fragile, le plastique s'est cassé au bout d'un mois.",
             "Excellent rapport qualité-prix, je recommande cette montre connectée.",
             "Le logiciel de cet appareil photo est plein de bugs, inutilisable.",
+            "Une vraie poubelle, je demande un remboursement immédiat.",
+            "C'est le meilleur achat de ma vie, la qualité est incroyable !",
+            "L'appareil est tombé en panne en deux jours, très mauvaise qualité.",
+            "Super produit, livraison très rapide et emballage soigné.",
         ],
-        "label": ["positif", "négatif", "positif", "négatif", "positif", "négatif"],
+        "label": [
+            "positif",
+            "négatif",
+            "positif",
+            "négatif",
+            "positif",
+            "négatif",
+            "négatif",
+            "positif",
+            "négatif",
+            "positif",
+        ],
     }
     return pd.DataFrame(data)
 
